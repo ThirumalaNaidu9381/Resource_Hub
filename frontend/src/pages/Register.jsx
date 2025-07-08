@@ -28,8 +28,8 @@ const Register = () => {
     }
 
     try {
-      const res = await API.post("/register", form);
-      login(res.data.user, res.data.token);
+      const res = await API.post("/auth/register", form); // 🔁 fixed endpoint
+      login(res.data.user, res.data.token); // ✅ ensure name comes in res.data.user.name
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
